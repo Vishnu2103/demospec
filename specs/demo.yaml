@@ -1,0 +1,2071 @@
+---
+openapi: 3.1.0
+info:
+  title: Freddy Query Placeholder API
+  description: FastAPI implementation of the Freddy Query Placeholder service
+  version: 1.0.0
+paths:
+  "/":
+    get:
+      summary: Root
+      operationId: root__get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+  "/health":
+    get:
+      summary: Health Check
+      operationId: health_check_health_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+  "/api/token":
+    get:
+      tags:
+      - token
+      summary: Token Page
+      operationId: token_page_api_token_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            text/html:
+              schema:
+                type: string
+    post:
+      tags:
+      - token
+      summary: Generate Token
+      operationId: generate_token_api_token_post
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              "$ref": "#/components/schemas/Body_generate_token_api_token_post"
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            text/html:
+              schema:
+                type: string
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/HTTPValidationError"
+  "/api/token/generate":
+    post:
+      tags:
+      - token
+      summary: Generate Token Api
+      operationId: generate_token_api_api_token_generate_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/GenerateTokenRequest"
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/TokenResponse"
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/HTTPValidationError"
+  "/api/misc/from-judo/verify-order":
+    post:
+      tags:
+      - misc_mocks
+      summary: Verify Order
+      operationId: verify_order_api_misc_from_judo_verify_order_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/VerifyOrderRequest"
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/VerifyOrderResponse"
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/HTTPValidationError"
+  "/api/misc/add-user":
+    post:
+      tags:
+      - misc_mocks
+      summary: Add User
+      operationId: add_user_api_misc_add_user_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/AddUserRequest"
+        required: true
+      responses:
+        '201':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/GenericResponse"
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/HTTPValidationError"
+  "/api/misc/get-order/{orderId}":
+    get:
+      tags:
+      - misc_mocks
+      summary: Get Order
+      operationId: get_order_api_misc_get_order__orderId__get
+      parameters:
+      - name: orderId
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Orderid
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/GenericResponse"
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/HTTPValidationError"
+  "/api/misc/secret":
+    get:
+      tags:
+      - misc_mocks
+      summary: Get Secret
+      operationId: get_secret_api_misc_secret_get
+      requestBody:
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/SecretRequest"
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/SecretResponse"
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/HTTPValidationError"
+  "/api/misc/getWishes":
+    get:
+      tags:
+      - misc_mocks
+      summary: Get Wishes
+      operationId: get_wishes_api_misc_getWishes_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/GenericResponse"
+  "/api/query/freshbot/query/ai_page/freshbot":
+    get:
+      tags:
+      - freshbot
+      summary: Ai Page Freshbot
+      description: Retrieves freshbot AI page data
+      operationId: ai_page_freshbot_api_query_freshbot_query_ai_page_freshbot_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+  "/api/query/freshchat/query/ai_page/freshchat/analytics":
+    get:
+      tags:
+      - freshchat
+      summary: Ai Page Freshchat Analytics
+      description: Retrieves freshchat analytics AI page data
+      operationId: ai_page_freshchat_analytics_api_query_freshchat_query_ai_page_freshchat_analytics_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+  "/api/query/freshchat/query/ai_page/freshchat/q2c":
+    get:
+      tags:
+      - freshchat
+      summary: Ai Page Freshchat Q2C
+      description: Retrieves freshchat q2c AI page data
+      operationId: ai_page_freshchat_q2c_api_query_freshchat_query_ai_page_freshchat_q2c_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+  "/api/query/freshdesk/query/ai_page/freshdesk":
+    get:
+      tags:
+      - freshdesk
+      summary: Ai Page Freshdesk
+      description: Retrieves freshdesk AI page data
+      operationId: ai_page_freshdesk_api_query_freshdesk_query_ai_page_freshdesk_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+  "/api/qmazon/items/":
+    get:
+      tags:
+      - qmazon_items
+      summary: Get Items
+      description: Retrieve all Qmazon items, optionally filtered by category or seller.
+      operationId: get_items_api_qmazon_items__get
+      parameters:
+      - name: category
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Filter items by category
+          title: Category
+        description: Filter items by category
+      - name: seller
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Filter items by seller
+          title: Seller
+        description: Filter items by seller
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/Item"
+                title: Response Get Items Api Qmazon Items  Get
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/HTTPValidationError"
+    post:
+      tags:
+      - qmazon_items
+      summary: Create Item
+      description: Create a new Qmazon item.
+      operationId: create_item_api_qmazon_items__post
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/ItemCreate"
+      responses:
+        '201':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/Item"
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/HTTPValidationError"
+  "/api/qmazon/items/{item_id}":
+    get:
+      tags:
+      - qmazon_items
+      summary: Get Item By Id
+      description: Retrieve a specific Qmazon item by its ID.
+      operationId: get_item_by_id_api_qmazon_items__item_id__get
+      parameters:
+      - name: item_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          description: The ID of the item to retrieve
+          title: Item Id
+        description: The ID of the item to retrieve
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/Item"
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/HTTPValidationError"
+    put:
+      tags:
+      - qmazon_items
+      summary: Update Item
+      description: Update an existing Qmazon item entirely.
+      operationId: update_item_api_qmazon_items__item_id__put
+      parameters:
+      - name: item_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Item Id
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/ItemUpdate"
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/Item"
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/HTTPValidationError"
+    patch:
+      tags:
+      - qmazon_items
+      summary: Partially Update Item
+      description: Partially update an existing Qmazon item.
+      operationId: partially_update_item_api_qmazon_items__item_id__patch
+      parameters:
+      - name: item_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Item Id
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/ItemUpdate"
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/Item"
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/HTTPValidationError"
+    delete:
+      tags:
+      - qmazon_items
+      summary: Delete Item
+      description: Delete a Qmazon item.
+      operationId: delete_item_api_qmazon_items__item_id__delete
+      parameters:
+      - name: item_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Item Id
+      responses:
+        '204':
+          description: Successful Response
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/HTTPValidationError"
+  "/api/qmazon/items/search/":
+    get:
+      tags:
+      - qmazon_items
+      summary: Search Items
+      description: Search for items by name or category.
+      operationId: search_items_api_qmazon_items_search__get
+      parameters:
+      - name: query
+        in: query
+        required: true
+        schema:
+          type: string
+          description: Search query string
+          title: Query
+        description: Search query string
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/SearchResult"
+                title: Response Search Items Api Qmazon Items Search  Get
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/HTTPValidationError"
+  "/api/qmazon/cart/":
+    get:
+      tags:
+      - qmazon_cart
+      summary: View Cart
+      description: Retrieves the current contents of the shopping cart along with
+        item details.
+      operationId: view_cart_api_qmazon_cart__get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/CartView"
+    post:
+      tags:
+      - qmazon_cart
+      summary: Add To Cart
+      description: Adds an item to the shopping cart or updates quantity if it already
+        exists.
+      operationId: add_to_cart_api_qmazon_cart__post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/CartItemAdd"
+        required: true
+      responses:
+        '201':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/CartOperationResponse"
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/HTTPValidationError"
+    delete:
+      tags:
+      - qmazon_cart
+      summary: Clear Cart
+      description: Removes all items from the shopping cart.
+      operationId: clear_cart_api_qmazon_cart__delete
+      responses:
+        '204':
+          description: Successful Response
+  "/api/qmazon/cart/{item_id}":
+    put:
+      tags:
+      - qmazon_cart
+      summary: Update Cart Item Quantity
+      description: Sets the quantity of a specific item in the cart. Use 0 quantity
+        to remove.
+      operationId: update_cart_item_quantity_api_qmazon_cart__item_id__put
+      parameters:
+      - name: item_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Item Id
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/CartItemUpdate"
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/CartOperationResponse"
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/HTTPValidationError"
+    delete:
+      tags:
+      - qmazon_cart
+      summary: Remove From Cart
+      description: Removes an item completely from the shopping cart.
+      operationId: remove_from_cart_api_qmazon_cart__item_id__delete
+      parameters:
+      - name: item_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Item Id
+      responses:
+        '204':
+          description: Successful Response
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/HTTPValidationError"
+  "/api/qmazon/orders":
+    post:
+      tags:
+      - qmazon_orders
+      summary: Place Order
+      description: Places an order using items currently in the cart.
+      operationId: place_order_api_qmazon_orders_post
+      responses:
+        '201':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/PlaceOrderResponse"
+  "/api/qmazon/orders/":
+    get:
+      tags:
+      - qmazon_orders
+      summary: List Orders
+      description: Lists summaries of placed order groups, optionally filtered by
+        status.
+      operationId: list_orders_api_qmazon_orders__get
+      parameters:
+      - name: status
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Filter orders by status (e.g., placed, shipped, delivered,
+            cancelled)
+          title: Status
+        description: Filter orders by status (e.g., placed, shipped, delivered, cancelled)
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          minimum: 1
+          description: Maximum number of order groups to return
+          default: 20
+          title: Limit
+        description: Maximum number of order groups to return
+      - name: offset
+        in: query
+        required: false
+        schema:
+          type: integer
+          minimum: 0
+          description: Number of order groups to skip
+          default: 0
+          title: Offset
+        description: Number of order groups to skip
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/OrderSummary"
+                title: Response List Orders Api Qmazon Orders  Get
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/HTTPValidationError"
+  "/api/qmazon/orders/{order_group_id}":
+    get:
+      tags:
+      - qmazon_orders
+      summary: Get Order Details
+      description: Retrieves the details of a specific placed order group.
+      operationId: get_order_details_api_qmazon_orders__order_group_id__get
+      parameters:
+      - name: order_group_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Order Group Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/PlacedOrderDetails"
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/HTTPValidationError"
+  "/api/qmazon/orders/{order_group_id}/status":
+    patch:
+      tags:
+      - qmazon_orders
+      summary: Update Order Status
+      description: Updates the status of all items within a specific order group.
+      operationId: update_order_status_api_qmazon_orders__order_group_id__status_patch
+      parameters:
+      - name: order_group_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Order Group Id
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/OrderStatusUpdate"
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/PlacedOrderDetails"
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/HTTPValidationError"
+  "/api/books":
+    get:
+      tags:
+      - books
+      summary: Get All Books
+      description: Retrieve all books from the database
+      operationId: get_all_books_api_books_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                items:
+                  "$ref": "#/components/schemas/Book"
+                type: array
+                title: Response Get All Books Api Books Get
+    post:
+      tags:
+      - books
+      summary: Create Book
+      description: Create a new book in the database
+      operationId: create_book_api_books_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/BookCreate"
+        required: true
+      responses:
+        '201':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/Book"
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/HTTPValidationError"
+  "/api/books/{book_id}":
+    get:
+      tags:
+      - books
+      summary: Get Book By Id
+      description: Retrieve a book by ID from the database
+      operationId: get_book_by_id_api_books__book_id__get
+      parameters:
+      - name: book_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          description: The ID of the book to retrieve
+          title: Book Id
+        description: The ID of the book to retrieve
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/Book"
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/HTTPValidationError"
+    put:
+      tags:
+      - books
+      summary: Update Book
+      description: Update an entire book in the database (replacing all fields)
+      operationId: update_book_api_books__book_id__put
+      parameters:
+      - name: book_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          description: The ID of the book to update
+          title: Book Id
+        description: The ID of the book to update
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/BookUpdate"
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/Book"
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/HTTPValidationError"
+    patch:
+      tags:
+      - books
+      summary: Partially Update Book
+      description: Partially update a book in the database
+      operationId: partially_update_book_api_books__book_id__patch
+      parameters:
+      - name: book_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          description: The ID of the book to partially update
+          title: Book Id
+        description: The ID of the book to partially update
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/BookPartialUpdate"
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/Book"
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/HTTPValidationError"
+    delete:
+      tags:
+      - books
+      summary: Delete Book
+      description: Delete a book from the database
+      operationId: delete_book_api_books__book_id__delete
+      parameters:
+      - name: book_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          description: The ID of the book to delete
+          title: Book Id
+        description: The ID of the book to delete
+      responses:
+        '204':
+          description: Successful Response
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/HTTPValidationError"
+  "/api/form-data":
+    post:
+      tags:
+      - books
+      summary: Handle Form Data
+      description: Handle form data
+      operationId: handle_form_data_api_form_data_post
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              "$ref": "#/components/schemas/Body_handle_form_data_api_form_data_post"
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/FormData"
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/HTTPValidationError"
+  "/api/query-params":
+    get:
+      tags:
+      - books
+      summary: Handle Query Params
+      description: Handle query parameters
+      operationId: handle_query_params_api_query_params_get
+      parameters:
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+          description: Page number
+          default: 1
+          title: Page
+        description: Page number
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          description: Items per page
+          default: 10
+          title: Limit
+        description: Items per page
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/QueryParams"
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/HTTPValidationError"
+  "/api/headers":
+    get:
+      tags:
+      - books
+      summary: Handle Headers
+      description: Handle headers
+      operationId: handle_headers_api_headers_get
+      parameters:
+      - name: authorization
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Authorization
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/HeadersResponse"
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/HTTPValidationError"
+  "/api/upload":
+    post:
+      tags:
+      - books
+      summary: Upload File
+      description: Upload a file
+      operationId: upload_file_api_upload_post
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              "$ref": "#/components/schemas/Body_upload_file_api_upload_post"
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/FileUploadResponse"
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/HTTPValidationError"
+  "/api/status/{status_code}":
+    get:
+      tags:
+      - books
+      summary: Get With Status Code
+      description: Return a response with the specified status code
+      operationId: get_with_status_code_api_status__status_code__get
+      parameters:
+      - name: status_code
+        in: path
+        required: true
+        schema:
+          type: integer
+          description: HTTP status code to return
+          title: Status Code
+        description: HTTP status code to return
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/StatusResponse"
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/HTTPValidationError"
+  "/api/xml":
+    post:
+      tags:
+      - books
+      summary: Handle Xml
+      description: Handle XML data
+      operationId: handle_xml_api_xml_post
+      requestBody:
+        content:
+          application/xml:
+            schema:
+              type: string
+              title: Xml Data
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/XmlResponse"
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/HTTPValidationError"
+  "/api/sse":
+    get:
+      tags:
+      - books
+      summary: Stream Events
+      operationId: stream_events_api_sse_get
+      parameters:
+      - name: count
+        in: query
+        required: false
+        schema:
+          type: integer
+          description: Number of events to stream
+          default: 5
+          title: Count
+        description: Number of events to stream
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/HTTPValidationError"
+  "/api/books/bulk":
+    post:
+      tags:
+      - books
+      summary: Create Multiple Books
+      description: Create multiple books in the database
+      operationId: create_multiple_books_api_books_bulk_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                "$ref": "#/components/schemas/BookCreate"
+              type: array
+              title: Books Data
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/BulkBooksResponse"
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/HTTPValidationError"
+  "/api/rate-limited":
+    get:
+      tags:
+      - books
+      summary: Rate Limited Endpoint
+      operationId: rate_limited_endpoint_api_rate_limited_get
+      parameters:
+      - name: X-Session-ID
+        in: header
+        required: false
+        schema:
+          type: string
+          title: X-Session-Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/HTTPValidationError"
+  "/api/protected":
+    get:
+      tags:
+      - books
+      summary: Protected Endpoint
+      operationId: protected_endpoint_api_protected_get
+      parameters:
+      - name: X-API-Key
+        in: header
+        required: true
+        schema:
+          type: string
+          title: X-Api-Key
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/HTTPValidationError"
+  "/api/books/search":
+    get:
+      tags:
+      - books
+      summary: Search Books
+      description: |-
+        Search for books in the database based on a query string and field.
+        Note: Simple LIKE search. For author_list, searches the JSON string.
+      operationId: search_books_api_books_search_get
+      parameters:
+      - name: query
+        in: query
+        required: true
+        schema:
+          type: string
+          description: Search term
+          title: Query
+        description: Search term
+      - name: field
+        in: query
+        required: false
+        schema:
+          type: string
+          description: Field to search in (e.g., book_name, author_list)
+          default: book_name
+          title: Field
+        description: Field to search in (e.g., book_name, author_list)
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/SearchResponse"
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/HTTPValidationError"
+  "/api/anonymize":
+    post:
+      tags:
+      - books
+      summary: Anonymize Text
+      operationId: anonymize_text_api_anonymize_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/AnonymizeRequest"
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/AnonymizeResponse"
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/HTTPValidationError"
+  "/api/deanonymize":
+    post:
+      tags:
+      - books
+      summary: Deanonymize Text
+      operationId: deanonymize_text_api_deanonymize_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/DeanonymizeRequest"
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/DeanonymizeResponse"
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/HTTPValidationError"
+components:
+  schemas:
+    AddUserRequest:
+      properties:
+        first_name:
+          type: string
+          title: First Name
+        email:
+          type: string
+          title: Email
+        last_name:
+          type: string
+          title: Last Name
+          default: ''
+      type: object
+      required:
+      - first_name
+      - email
+      title: AddUserRequest
+    AnonymizeRequest:
+      properties:
+        text:
+          type: string
+          title: Text
+        entity_types:
+          items:
+            type: string
+          type: array
+          title: Entity Types
+          default:
+          - name
+          - email
+          - phone
+          - address
+      type: object
+      required:
+      - text
+      title: AnonymizeRequest
+    AnonymizeResponse:
+      properties:
+        anonymized_text:
+          type: string
+          title: Anonymized Text
+        token_map:
+          additionalProperties:
+            type: string
+          type: object
+          title: Token Map
+      type: object
+      required:
+      - anonymized_text
+      - token_map
+      title: AnonymizeResponse
+    Body_generate_token_api_token_post:
+      properties:
+        private_key:
+          type: string
+          title: Private Key
+          default: ''
+        password:
+          type: string
+          title: Password
+          default: ''
+        payload:
+          type: string
+          title: Payload
+          default: "{}"
+        headers:
+          type: string
+          title: Headers
+          default: "{}"
+        expiry:
+          type: integer
+          title: Expiry
+          default: 60
+      type: object
+      title: Body_generate_token_api_token_post
+    Body_handle_form_data_api_form_data_post:
+      properties:
+        name:
+          type: string
+          title: Name
+        email:
+          type: string
+          title: Email
+      type: object
+      required:
+      - name
+      - email
+      title: Body_handle_form_data_api_form_data_post
+    Body_upload_file_api_upload_post:
+      properties:
+        file:
+          type: string
+          format: binary
+          title: File
+      type: object
+      required:
+      - file
+      title: Body_upload_file_api_upload_post
+    Book:
+      properties:
+        id:
+          type: integer
+          title: Id
+        book_name:
+          type: string
+          title: Book Name
+        author_list:
+          items:
+            type: string
+          type: array
+          title: Author List
+        published_date:
+          type: string
+          title: Published Date
+        price:
+          type: number
+          title: Price
+          default: 0
+        hardcover:
+          type: boolean
+          title: Hardcover
+          default: false
+        author_details:
+          items:
+            type: string
+          type: array
+          title: Author Details
+          default: []
+      type: object
+      required:
+      - id
+      - book_name
+      - author_list
+      - published_date
+      title: Book
+    BookCreate:
+      properties:
+        book_name:
+          type: string
+          title: Book Name
+        author_list:
+          items:
+            type: string
+          type: array
+          title: Author List
+        published_date:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Published Date
+        price:
+          type: number
+          title: Price
+          default: 0
+        hardcover:
+          type: boolean
+          title: Hardcover
+          default: false
+        author_details:
+          items:
+            type: string
+          type: array
+          title: Author Details
+          default: []
+      type: object
+      required:
+      - book_name
+      - author_list
+      title: BookCreate
+    BookPartialUpdate:
+      properties:
+        book_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Book Name
+        author_list:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Author List
+        published_date:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Published Date
+        price:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Price
+        hardcover:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Hardcover
+        author_details:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Author Details
+      type: object
+      title: BookPartialUpdate
+    BookUpdate:
+      properties:
+        book_name:
+          type: string
+          title: Book Name
+        author_list:
+          items:
+            type: string
+          type: array
+          title: Author List
+        published_date:
+          type: string
+          title: Published Date
+        price:
+          type: number
+          title: Price
+        hardcover:
+          type: boolean
+          title: Hardcover
+        author_details:
+          items:
+            type: string
+          type: array
+          title: Author Details
+      type: object
+      required:
+      - book_name
+      - author_list
+      - published_date
+      - price
+      - hardcover
+      - author_details
+      title: BookUpdate
+    BulkBooksResponse:
+      properties:
+        message:
+          type: string
+          title: Message
+        books_created:
+          type: integer
+          title: Books Created
+      type: object
+      required:
+      - message
+      - books_created
+      title: BulkBooksResponse
+    CartItemAdd:
+      properties:
+        item_id:
+          type: integer
+          title: Item Id
+        quantity:
+          type: integer
+          title: Quantity
+      type: object
+      required:
+      - item_id
+      - quantity
+      title: CartItemAdd
+    CartItemDetail:
+      properties:
+        cart_entry_id:
+          type: integer
+          title: Cart Entry Id
+        item_id:
+          type: integer
+          title: Item Id
+        quantity:
+          type: integer
+          title: Quantity
+        name:
+          type: string
+          title: Name
+        price:
+          type: number
+          title: Price
+        category:
+          type: string
+          title: Category
+        seller:
+          type: string
+          title: Seller
+        stock:
+          type: integer
+          title: Stock
+      type: object
+      required:
+      - cart_entry_id
+      - item_id
+      - quantity
+      - name
+      - price
+      - category
+      - seller
+      - stock
+      title: CartItemDetail
+    CartItemUpdate:
+      properties:
+        quantity:
+          type: integer
+          title: Quantity
+      type: object
+      required:
+      - quantity
+      title: CartItemUpdate
+    CartOperationResponse:
+      properties:
+        id:
+          type: integer
+          title: Id
+        item_id:
+          type: integer
+          title: Item Id
+        quantity:
+          type: integer
+          title: Quantity
+      type: object
+      required:
+      - id
+      - item_id
+      - quantity
+      title: CartOperationResponse
+    CartView:
+      properties:
+        items:
+          items:
+            "$ref": "#/components/schemas/CartItemDetail"
+          type: array
+          title: Items
+      type: object
+      required:
+      - items
+      title: CartView
+    DeanonymizeRequest:
+      properties:
+        anonymized_text:
+          type: string
+          title: Anonymized Text
+        token_map:
+          additionalProperties:
+            type: string
+          type: object
+          title: Token Map
+      type: object
+      required:
+      - anonymized_text
+      - token_map
+      title: DeanonymizeRequest
+    DeanonymizeResponse:
+      properties:
+        deanonymized_text:
+          type: string
+          title: Deanonymized Text
+      type: object
+      required:
+      - deanonymized_text
+      title: DeanonymizeResponse
+    FileUploadResponse:
+      properties:
+        message:
+          type: string
+          title: Message
+      type: object
+      required:
+      - message
+      title: FileUploadResponse
+    FormData:
+      properties:
+        name:
+          type: string
+          title: Name
+        email:
+          type: string
+          title: Email
+      type: object
+      required:
+      - name
+      - email
+      title: FormData
+    GenerateTokenRequest:
+      properties:
+        private_key:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Private Key
+        password:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Password
+        payload:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          title: Payload
+        headers:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          title: Headers
+        expiry_minutes:
+          type: integer
+          title: Expiry Minutes
+          default: 60
+        use_fwsskey:
+          type: boolean
+          title: Use Fwsskey
+          default: true
+      type: object
+      title: GenerateTokenRequest
+    GenericResponse:
+      properties:
+        message:
+          type: string
+          title: Message
+      type: object
+      required:
+      - message
+      title: GenericResponse
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            "$ref": "#/components/schemas/ValidationError"
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    HeadersResponse:
+      properties:
+        auth_token:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Auth Token
+      type: object
+      title: HeadersResponse
+    Item:
+      properties:
+        id:
+          type: integer
+          title: Id
+        name:
+          type: string
+          title: Name
+        price:
+          type: number
+          title: Price
+        category:
+          type: string
+          title: Category
+        seller:
+          type: string
+          title: Seller
+        stock:
+          type: integer
+          title: Stock
+      type: object
+      required:
+      - id
+      - name
+      - price
+      - category
+      - seller
+      - stock
+      title: Item
+    ItemCreate:
+      properties:
+        name:
+          type: string
+          title: Name
+          description: Name of the item
+        price:
+          type: number
+          exclusiveMinimum: 0
+          title: Price
+          description: Price of the item
+        category:
+          type: string
+          title: Category
+          description: Category of the item
+        seller:
+          type: string
+          title: Seller
+          description: Seller of the item
+        stock:
+          type: integer
+          minimum: 0
+          title: Stock
+          description: Initial stock quantity (defaults to 0)
+          default: 0
+      type: object
+      required:
+      - name
+      - price
+      - category
+      - seller
+      title: ItemCreate
+    ItemUpdate:
+      properties:
+        name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Name
+          description: Name of the item
+        price:
+          anyOf:
+          - type: number
+            exclusiveMinimum: 0
+          - type: 'null'
+          title: Price
+          description: Price of the item
+        category:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Category
+          description: Category of the item
+        seller:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Seller
+          description: Seller of the item
+        stock:
+          anyOf:
+          - type: integer
+            minimum: 0
+          - type: 'null'
+          title: Stock
+          description: Stock quantity
+      type: object
+      title: ItemUpdate
+    OrderStatusUpdate:
+      properties:
+        status:
+          type: string
+          title: Status
+          description: The new status for the order (e.g., shipped, delivered, cancelled)
+      type: object
+      required:
+      - status
+      title: OrderStatusUpdate
+    OrderSummary:
+      properties:
+        order_group_id:
+          type: string
+          title: Order Group Id
+        order_time:
+          type: string
+          format: date-time
+          title: Order Time
+        status:
+          type: string
+          title: Status
+        item_count:
+          type: integer
+          title: Item Count
+        total_amount:
+          type: number
+          title: Total Amount
+      type: object
+      required:
+      - order_group_id
+      - order_time
+      - status
+      - item_count
+      - total_amount
+      title: OrderSummary
+    PlaceOrderResponse:
+      properties:
+        message:
+          type: string
+          title: Message
+        order_group_id:
+          type: string
+          title: Order Group Id
+        order_details:
+          items:
+            "$ref": "#/components/schemas/PlacedOrderItem"
+          type: array
+          title: Order Details
+      type: object
+      required:
+      - message
+      - order_group_id
+      - order_details
+      title: PlaceOrderResponse
+    PlacedOrderDetails:
+      properties:
+        order_group_id:
+          type: string
+          title: Order Group Id
+        order_timestamp:
+          type: string
+          format: date-time
+          title: Order Timestamp
+        total_amount:
+          type: number
+          title: Total Amount
+        items:
+          items:
+            "$ref": "#/components/schemas/PlacedOrderItem"
+          type: array
+          title: Items
+      type: object
+      required:
+      - order_group_id
+      - order_timestamp
+      - total_amount
+      - items
+      title: PlacedOrderDetails
+    PlacedOrderItem:
+      properties:
+        id:
+          type: integer
+          title: Id
+        order_group_id:
+          type: string
+          title: Order Group Id
+        item_id:
+          type: integer
+          title: Item Id
+        name:
+          type: string
+          title: Name
+        quantity:
+          type: integer
+          title: Quantity
+        price_at_order:
+          type: number
+          title: Price At Order
+        order_timestamp:
+          type: string
+          format: date-time
+          title: Order Timestamp
+        status:
+          type: string
+          title: Status
+      type: object
+      required:
+      - id
+      - order_group_id
+      - item_id
+      - name
+      - quantity
+      - price_at_order
+      - order_timestamp
+      - status
+      title: PlacedOrderItem
+    QueryParams:
+      properties:
+        page:
+          type: integer
+          title: Page
+          default: 1
+        limit:
+          type: integer
+          title: Limit
+          default: 10
+      type: object
+      title: QueryParams
+    SearchResponse:
+      properties:
+        books:
+          items:
+            "$ref": "#/components/schemas/Book"
+          type: array
+          title: Books
+        count:
+          type: integer
+          title: Count
+      type: object
+      required:
+      - books
+      - count
+      title: SearchResponse
+    SearchResult:
+      properties:
+        id:
+          type: integer
+          title: Id
+        name:
+          type: string
+          title: Name
+        price:
+          type: number
+          title: Price
+        category:
+          type: string
+          title: Category
+        seller:
+          type: string
+          title: Seller
+        stock:
+          type: integer
+          title: Stock
+      type: object
+      required:
+      - id
+      - name
+      - price
+      - category
+      - seller
+      - stock
+      title: SearchResult
+    SecretRequest:
+      properties:
+        secretId:
+          type: string
+          title: Secretid
+      type: object
+      required:
+      - secretId
+      title: SecretRequest
+    SecretResponse:
+      properties:
+        secret:
+          type: string
+          title: Secret
+      type: object
+      required:
+      - secret
+      title: SecretResponse
+    StatusResponse:
+      properties:
+        message:
+          type: string
+          title: Message
+      type: object
+      required:
+      - message
+      title: StatusResponse
+    TokenResponse:
+      properties:
+        status:
+          type: string
+          title: Status
+        token:
+          type: string
+          title: Token
+        payload:
+          additionalProperties: true
+          type: object
+          title: Payload
+      type: object
+      required:
+      - status
+      - token
+      - payload
+      title: TokenResponse
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    VerifyOrderRequest:
+      properties:
+        order_id:
+          type: string
+          title: Order Id
+        email:
+          type: string
+          title: Email
+        phoneNumber:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Phonenumber
+      type: object
+      required:
+      - order_id
+      - email
+      title: VerifyOrderRequest
+    VerifyOrderResponse:
+      properties:
+        status:
+          type: string
+          title: Status
+        message:
+          type: string
+          title: Message
+      type: object
+      required:
+      - status
+      - message
+      title: VerifyOrderResponse
+    XmlResponse:
+      properties:
+        message:
+          type: string
+          title: Message
+        xml_content:
+          type: string
+          title: Xml Content
+      type: object
+      required:
+      - message
+      - xml_content
+      title: XmlResponse
